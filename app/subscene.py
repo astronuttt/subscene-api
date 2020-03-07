@@ -36,5 +36,40 @@ class Subscene(Base):
 
                 data = {"name": name, "link": link, "count": int(sub_count)}
                 subtitles.append(data)
- 
+
         return subtitles
+
+    async def subtitles(self, url, lang=None):
+        resp = await self.aiorequest(url, lang)
+        soup = BeautifulSoup(resp, 'lxml')
+        title = soup.find('div', class_='box clearfix').find('div', class_='top left').find('div', class_='header').h2.text
+        try:
+            title = title.replace("Flag", "")
+            title = title.replace("Imdb", "").strip()
+        except:
+            pass
+
+        table = soup.table.tbody.find_all('tr')
+
+        subtitles = []
+        for tr in table:
+            try:
+                sub_name = tr.find('td', class_='a1').a.find_all('span')[1].text.strip()  # release title
+            except AttributeError:
+                continue
+            sub_link = tr.find('td', class_='a1').a['href']  # release link
+            try:
+                sub_owner = tr.find('td', class_='a5').a.text.strip()  # sub owner
+            except:
+                sub_owner = "Anonymous"
+            try:
+                comments = tr.find('td', class_='a6').a.text.strip()
+            except:
+                comments = ""
+            sub_link = "https://subscene.com" + sub_link
+
+            sub = {"name": sub_name, "link": sub_link, "owner": sub_owner, "comments": comments}
+            subtitles.append(sub)
+
+        re_subtitles = {"title": title, "subtitles": subtitles}
+        return re_subtitles
