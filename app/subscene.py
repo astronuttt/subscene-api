@@ -32,7 +32,7 @@ class Subscene(Base):
                     sub_count = li.find('span', class_='subtle count').text
                 sub_count = re.findall(r'\d+', sub_count)[0]
 
-                link = "https://subscene.com/subtitles" + link
+                link = "https://subscene.com" + link
 
                 data = {"name": name, "link": link, "count": int(sub_count)}
                 subtitles.append(data)
@@ -73,3 +73,37 @@ class Subscene(Base):
 
         re_subtitles = {"title": title, "subtitles": subtitles}
         return re_subtitles
+
+    async def down_page(self, url):
+        resp = await self.aiorequest(url)
+        soup = BeautifulSoup(resp, 'lxml')
+
+        maindiv = soup.body.find('div', class_='subtitle').find('div', class_='top left')
+        title = maindiv.find('div', class_='header').h1.span.text.strip()
+        imdb = maindiv.find('div', class_='header').h1.a['href']
+        try:
+            poster = maindiv.find('div', class_='poster').a['href']
+        except:
+            poster = ""
+        try:
+            author_name = maindiv.find('div', class_='header').ul.find('li', class_='author').a.text.strip()
+            author_link = f"https://subscene.com{maindiv.find('div', class_='header').ul.find('li', class_='author').a['href']}"
+        except:
+            author_link = ""
+            author_name = "Anonymous"
+
+        download_url = f"https://subscene.com{maindiv.find('div', class_='header').ul.find('li', class_='clearfix').find('div', class_='download').a['href']}"
+
+        try:
+            comments = maindiv.find('div', class_ = 'header').ul.find('li', class_ = 'comment-wrapper').find('div', class_ = 'comment').text
+        except:
+            comments = ""
+
+        response = {"title": title, "imdb": imdb, "poster": poster, "author_name": author_name,
+            "author_url": author_link, "download_url": download_url, "comments": comments}
+        return response
+
+    async def download(self, url, file_path):
+        resp = await self.download_file(url, file_path)
+
+        return resp
