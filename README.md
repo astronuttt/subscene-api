@@ -1,4 +1,4 @@
-# Fully asynchronous and unofficial API like for Subscene.com
+# Fully asynchronous and unofficial API like for [Subscene.com](Subscene.com)
 ##### its the scraper that used in [@SubsearchsBot](t.me/SubsearchsBot) telegram bot.
 
 ## what can this script do?
