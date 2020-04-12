@@ -1,5 +1,5 @@
-# Fully asynchronous and unofficial API like for [Subscene.com](Subscene.com)
-##### its the scraper that used in [@SubsearchsBot](t.me/SubsearchsBot) telegram bot.
+# Fully asynchronous and unofficial API like for [Subscene.com](https://Subscene.com)
+##### its the scraper that used in [@SubsearchsBot](https://t.me/SubsearchsBot) telegram bot.
 
 ## what can this script do?
 you can simply use this script for you app or website to search/find/download a subtitle.
@@ -16,5 +16,5 @@ you can simply use this script for you app or website to search/find/download a 
 
 ##### contact me:
 * email: ebrahimisina78@gmail.com
-* telegram: [@Thunderstrack](t.me/Thunderstrack)
+* telegram: [@Thunderstrack](https://t.me/Thunderstrack)
 
