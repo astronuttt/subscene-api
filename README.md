@@ -1,10 +1,10 @@
 # Fully asynchronous and unofficial API like for [Subscene.com](https://Subscene.com)
 ##### its the scraper that used in [@SubsearchsBot](https://t.me/SubsearchsBot) telegram bot.
 
-## what can this script do?
+### what can this script do?
 you can simply use this script for you app or website to search/find/download a subtitle.
 
-####supported languages:
+#### supported languages:
 - Persian
 - English
 - Arabic
