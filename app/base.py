@@ -5,7 +5,7 @@ import aiofiles
 import aiohttp
 
 if os.path.isdir("downloaded") is False:
-    print(f"downloaded directory dose not exitst\ncurrent directory: {os.getcwd()}")
+    print(f"downloaded directory dose not exist\ncurrent directory: {os.getcwd()}")
     os.mkdir("downloaded")
     print("downloaded directory created!")
 
@@ -13,14 +13,14 @@ if os.path.isdir("downloaded") is False:
 class Base:
     """
     base class for package
-    all dirty works will be done here.
+    all requests and responses will be done here.
     """
 
     # send request to subscene and get the response
     async def request(self, session: aiohttp.ClientSession, url: str):
         resp = await session.request('GET', url=url)
         if resp.status != 200:
-            await asyncio.sleep(3)
+            await asyncio.sleep(3)  # no need for recursion. its just for too many requests.
             resp = await session.request('GET', url=url)
         return await resp.text()
 
@@ -31,7 +31,7 @@ class Base:
         else:
             lang = ""
         costume_headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                           '(KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36', 'cookie': lang}
+                                         '(KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36', 'cookie': lang}
         async with aiohttp.ClientSession(headers=costume_headers) as session:
             html = await self.request(session, url)
             return html
