@@ -2,7 +2,7 @@
 ##### its the scraper that used in [@SubsearchsBot](https://t.me/SubsearchsBot) telegram bot.
 
 ### what can this script do?
-you can simply use this script for you app or website to search/find/download a subtitle.
+you can simply use this script for your app or website to search/find/download a subtitle.
 
 #### supported languages:
 - Persian
