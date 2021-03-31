@@ -7,7 +7,7 @@ beautifulsoup4==4.8.2
 chardet==3.0.4
 idna==2.9
 isort==4.3.21
-lxml==4.5.0
+lxml==4.6.3
 mccabe==0.6.1
 multidict==4.7.5
 pycodestyle==2.5.0
